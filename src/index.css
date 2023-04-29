@@ -1,3 +1,16 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+    .button {
+        @apply cursor-pointer h-16 p-3 text-white  bg-violet-500 transition-all hover:bg-violet-600 rounded-sm ;
+    }
+    .button-green {
+        @apply cursor-pointer h-16 p-3 text-white  bg-sky-500 transition-all hover:bg-sky-600 rounded-sm;
+    }
+    .button-red {
+        @apply cursor-pointer h-16 p-3 text-white  bg-fuchsia-500 transition-all hover:bg-fuchsia-600 rounded-sm;
+    }
+    
+}
