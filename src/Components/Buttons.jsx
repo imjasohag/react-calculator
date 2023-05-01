@@ -18,6 +18,9 @@ const Buttons = (props) => {
     }
     if (operationval == '' && secondInput == '') {
       setFirstInput((prevIn) => {
+        if (prevIn == null) {
+          return value
+        }
         return prevIn + value
       })
     }

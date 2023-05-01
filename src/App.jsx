@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import Buttons from './Components/Buttons'
 
 const App = () => {
-  const [firstInput, setFirstInput] = useState('0')
+  const [firstInput, setFirstInput] = useState(null)
   // console.log("🚀 ~ file: Buttons.jsx:6 ~ Buttons ~ firstInput:", firstInput)
   const [secondInput, setSecondInput] = useState('')
   // console.log("🚀 ~ file: Buttons.jsx:6 ~ Buttons ~ secondInput:", secondInput)
@@ -13,7 +13,7 @@ const App = () => {
 
   // reset 
   const reset = () => {
-    setFirstInput('0')
+    setFirstInput(null)
     setSecondInput('')
     setOperationval('')
     setResultValue(null)
@@ -24,7 +24,7 @@ const App = () => {
     // 
 
     if ((firstInput && firstInput.length == 1) && operationval == '' && secondInput == '' && resultValue !== null) {
-      setFirstInput('0')
+      setFirstInput(null)
       setResultValue(null)
       return
     }
@@ -37,7 +37,7 @@ const App = () => {
       setOperationval((prevIn) => {
         return (prevIn.slice(0, (prevIn.length - 1)))
       })
-    } else if (firstInput != '') {
+    } else if (firstInput !== null) {
       setFirstInput((prevIn) => {
         return (prevIn.slice(0, (prevIn.length - 1)))
       })
@@ -52,9 +52,10 @@ const App = () => {
         {/* output  */}
         <div className='text-center col-span-4 py-4 px-2 bg-violet-400'>
           <div className='text-right text-lg text-gray-700'>
-            {/* {(firstInput == '0') ? firstInput : (firstInput.startsWith('0') ? firstInput.slice(1) : firstInput)}
-            {operationval}{secondInput} */}
-            f={firstInput} op={operationval} s={secondInput}
+
+            {firstInput == null ? "0" : firstInput}{operationval}{secondInput}
+
+            {/* f={firstInput || "n"} op={operationval} s={secondInput} */}
           </div >
           <div className='text-right text-2xl'>
             {resultValue == null ? "0" : resultValue}
