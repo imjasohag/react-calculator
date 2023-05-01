@@ -8,28 +8,24 @@ const App = () => {
   // console.log("🚀 ~ file: Buttons.jsx:6 ~ Buttons ~ secondInput:", secondInput)
   const [operationval, setOperationval] = useState('')
   // console.log("🚀 ~ file: Buttons.jsx:8 ~ Buttons ~ operation:", operationval)
-  const [resultValue, setResultValue] = useState(0)
+  const [resultValue, setResultValue] = useState(null)
 
-  // result 
-  const result = (result) => {
-    // console.log("🚀 ~ file: App.jsx:11 ~ result ~ result:", result)
-    setResultValue(result)
-  }
+
   // reset 
   const reset = () => {
     setFirstInput('0')
     setSecondInput('')
     setOperationval('')
-    setResultValue('0')
+    setResultValue(null)
   }
 
   // delete fun 
   const deleteFun = () => {
     // 
 
-    if ((firstInput && firstInput.length == 1) && operationval == '' && secondInput == '' && result !== '') {
+    if ((firstInput && firstInput.length == 1) && operationval == '' && secondInput == '' && resultValue !== null) {
       setFirstInput('0')
-      setResultValue('0')
+      setResultValue(null)
       return
     }
 
@@ -56,15 +52,15 @@ const App = () => {
         {/* output  */}
         <div className='text-center col-span-4 py-4 px-2 bg-violet-400'>
           <div className='text-right text-lg text-gray-700'>
-            {(firstInput == '0') ? firstInput : (firstInput.startsWith('0') ? firstInput.slice(1) : firstInput)}
-            {operationval}{secondInput}
-            {/* f={firstInput} op={operationval} s={secondInput}  */}
+            {/* {(firstInput == '0') ? firstInput : (firstInput.startsWith('0') ? firstInput.slice(1) : firstInput)}
+            {operationval}{secondInput} */}
+            f={firstInput} op={operationval} s={secondInput}
           </div >
           <div className='text-right text-2xl'>
-            {resultValue}
+            {resultValue == null ? "0" : resultValue}
           </div>
         </div>
-        <Buttons result={result} reset={reset} deleteFun={deleteFun}
+        <Buttons resultValue={resultValue} reset={reset} deleteFun={deleteFun}
           firstInput={firstInput} secondInput={secondInput} operationval={operationval} setFirstInput={setFirstInput} setSecondInput={setSecondInput} setOperationval={setOperationval} setResultValue={setResultValue} />
       </div>
     </div>

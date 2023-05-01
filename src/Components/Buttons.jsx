@@ -2,21 +2,21 @@ import React, { useState } from 'react'
 // import Button from './Button'
 
 const Buttons = (props) => {
-  const { firstInput, setFirstInput, secondInput, setSecondInput, operationval, setOperationval, reset, deleteFun, result, setResultValue } = props
+  const { firstInput, setFirstInput, secondInput, setSecondInput, operationval, setOperationval, reset, deleteFun, resultValue, setResultValue } = props
 
   // numbr input fun
   const numInputValue = (e) => {
     const value = e.target.value;
 
-    if (result && firstInput && operationval && secondInput) {
+    if (resultValue !== null && firstInput && operationval && secondInput) {
       // when all the state are filled, and type new number clearing all state
       setFirstInput(value)
       setOperationval('')
       setSecondInput('')
-      setResultValue('0')
-      // return // (stop here)
+      setResultValue(null)
+      return // (stop here)
     }
-    else if (operationval == '' && secondInput == '') {
+    if (operationval == '' && secondInput == '') {
       setFirstInput((prevIn) => {
         return prevIn + value
       })
@@ -52,23 +52,23 @@ const Buttons = (props) => {
   const addition = (a, b) => {
     let result = parseFloat(a) + parseFloat(b)
     // console.log("🚀 ~ file: Buttons.jsx:52 ~ addition ~ result:", result)
-    props.result(result)
+    setResultValue(result)
 
   }
   const subtraction = (a, b) => {
     let result = parseFloat(a) - parseFloat(b)
     // console.log("🚀 ~ file: Buttons.jsx:55 ~ subtraction ~ result:", result)
-    props.result(result)
+    setResultValue(result)
   }
   const multiplication = (a, b) => {
     let result = parseFloat(a) * parseFloat(b)
     // console.log("🚀 ~ file: Buttons.jsx:60 ~ multiplication ~ result:", result)
-    props.result(result)
+    setResultValue(result)
   }
   const division = (a, b) => {
     let result = parseFloat(a) / parseFloat(b)
     // console.log("🚀 ~ file: Buttons.jsx:65 ~ division ~ result:", result)
-    props.result(result)
+    setResultValue(result)
   }
 
 
