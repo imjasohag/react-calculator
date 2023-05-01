@@ -2,33 +2,35 @@ import React, { useState } from 'react'
 // import Button from './Button'
 
 const Buttons = (props) => {
-  const [firstInput, setFirstInput] = useState('0')
-  // console.log("🚀 ~ file: Buttons.jsx:6 ~ Buttons ~ firstInput:", firstInput)
-  const [secondInput, setSecondInput] = useState('')
-  // console.log("🚀 ~ file: Buttons.jsx:6 ~ Buttons ~ secondInput:", secondInput)
-  const [operationval, setOperationval] = useState('')
-  // console.log("🚀 ~ file: Buttons.jsx:8 ~ Buttons ~ operation:", operationval)
-  
+  const { firstInput, setFirstInput, secondInput, setSecondInput, operationval, setOperationval, reset, deleteFun, result, setResultValue } = props
+
   // numbr input fun
   const numInputValue = (e) => {
     const value = e.target.value;
-    if (operationval == '') {
+
+    if (result && firstInput && operationval && secondInput) {
+      // when all the state are filled, and type new number clearing all state
+      setFirstInput(value)
+      setOperationval('')
+      setSecondInput('')
+      setResultValue('0')
+      // return // (stop here)
+    }
+    else if (operationval == '' && secondInput == '') {
       setFirstInput((prevIn) => {
         return prevIn + value
       })
-      
-    } else {
+    }
+    else if (firstInput !== '' && operationval !== '') {
       setSecondInput((prevIn) => {
         return prevIn + value
       })
-      props.input2(secondInput)
     }
   }
   // operation 
   const operationFun = (e) => {
     const value = e.target.value;
     setOperationval(value)
-    props.operation(operationval)
   }
   // output 
   const outputFun = () => {
@@ -48,22 +50,23 @@ const Buttons = (props) => {
   }
   // operational functions
   const addition = (a, b) => {
-    let result = parseInt(a) + parseInt(b)
+    let result = parseFloat(a) + parseFloat(b)
     // console.log("🚀 ~ file: Buttons.jsx:52 ~ addition ~ result:", result)
     props.result(result)
+
   }
   const subtraction = (a, b) => {
-    let result = parseInt(a) - parseInt(b)
+    let result = parseFloat(a) - parseFloat(b)
     // console.log("🚀 ~ file: Buttons.jsx:55 ~ subtraction ~ result:", result)
     props.result(result)
   }
   const multiplication = (a, b) => {
-    let result = parseInt(a) * parseInt(b)
+    let result = parseFloat(a) * parseFloat(b)
     // console.log("🚀 ~ file: Buttons.jsx:60 ~ multiplication ~ result:", result)
     props.result(result)
   }
   const division = (a, b) => {
-    let result = parseInt(a) / parseInt(b)
+    let result = parseFloat(a) / parseFloat(b)
     // console.log("🚀 ~ file: Buttons.jsx:65 ~ division ~ result:", result)
     props.result(result)
   }
@@ -71,21 +74,21 @@ const Buttons = (props) => {
 
   return (
     <>
-      <input className='button col-span-2' type="button" value="AC" />
-      <input className='button' type="button" value="DEL" />
-      <input onClick={operationFun} className='button-green' type="button" value="÷" />
+      <input onClick={reset} className='button col-span-2' type="button" value="AC" />
+      <input onClick={deleteFun} className='button' type="button" value="DEL" />
+      <input onClick={operationFun} className='button-green' type="button" value="+" />
       <input onClick={numInputValue} className='button' type="button" value='1' />
       <input onClick={numInputValue} className='button' type="button" value="2" />
       <input onClick={numInputValue} className='button' type="button" value="3" />
-      <input onClick={operationFun} className='button-green' type="button" value="x" />
+      <input onClick={operationFun} className='button-green' type="button" value="-" />
       <input onClick={numInputValue} className='button' type="button" value="4" />
       <input onClick={numInputValue} className='button' type="button" value="5" />
       <input onClick={numInputValue} className='button' type="button" value="6" />
-      <input onClick={operationFun} className='button-green' type="button" value="+" />
+      <input onClick={operationFun} className='button-green' type="button" value="÷" />
       <input onClick={numInputValue} className='button' type="button" value="7" />
       <input onClick={numInputValue} className='button' type="button" value="8" />
       <input onClick={numInputValue} className='button' type="button" value="9" />
-      <input onClick={operationFun} className='button-green' type="button" value="-" />
+      <input onClick={operationFun} className='button-green' type="button" value="x" />
       <input onClick={numInputValue} className='button' type="button" value="." />
       <input onClick={numInputValue} className='button' type="button" value="0" />
       <input onClick={outputFun} className='button-red col-span-2' type="button" value="=" />
