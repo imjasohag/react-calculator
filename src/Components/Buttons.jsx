@@ -11,12 +11,12 @@ const Buttons = (props) => {
     if (resultValue !== null && firstInput && operationval && secondInput) {
       // when all the state are filled, and type new number clearing all state
       setFirstInput(value)
-      setOperationval('')
-      setSecondInput('')
+      setOperationval(null)
+      setSecondInput(null)
       setResultValue(null)
       return // (stop here)
     }
-    if (operationval == '' && secondInput == '') {
+    if (operationval == null && secondInput == null) {
       setFirstInput((prevIn) => {
         if (prevIn == null) {
           return value
@@ -24,9 +24,14 @@ const Buttons = (props) => {
         return prevIn + value
       })
     }
-    else if (firstInput !== '' && operationval !== '') {
+    else if (firstInput !== null && operationval !== null) {
       setSecondInput((prevIn) => {
-        return prevIn + value
+        if (prevIn == null) {
+          return value
+        } else {
+          return prevIn + value
+        }
+
       })
     }
   }

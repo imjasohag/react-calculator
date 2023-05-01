@@ -3,43 +3,52 @@ import Buttons from './Components/Buttons'
 
 const App = () => {
   const [firstInput, setFirstInput] = useState(null)
-  // console.log("🚀 ~ file: Buttons.jsx:6 ~ Buttons ~ firstInput:", firstInput)
-  const [secondInput, setSecondInput] = useState('')
-  // console.log("🚀 ~ file: Buttons.jsx:6 ~ Buttons ~ secondInput:", secondInput)
-  const [operationval, setOperationval] = useState('')
-  // console.log("🚀 ~ file: Buttons.jsx:8 ~ Buttons ~ operation:", operationval)
+  const [secondInput, setSecondInput] = useState(null)
+  const [operationval, setOperationval] = useState(null)
+
   const [resultValue, setResultValue] = useState(null)
 
 
-  // reset 
+  // reset function
   const reset = () => {
     setFirstInput(null)
-    setSecondInput('')
-    setOperationval('')
+    setSecondInput(null)
+    setOperationval(null)
     setResultValue(null)
   }
 
-  // delete fun 
+  // delete function 
   const deleteFun = () => {
-    // 
 
-    if ((firstInput && firstInput.length == 1) && operationval == '' && secondInput == '' && resultValue !== null) {
+    if ((firstInput && firstInput.length == 1) && operationval == null && secondInput == null && resultValue !== null) {
       setFirstInput(null)
       setResultValue(null)
       return
     }
 
-    if (secondInput != '') {
+    if (secondInput != null) {
       setSecondInput((prevIn) => {
-        return (prevIn.slice(0, (prevIn.length - 1)))
+        if ((prevIn.slice(0, (prevIn.length - 1)))) {
+          return (prevIn.slice(0, (prevIn.length - 1)))
+        } else {
+          return null;
+        }
       })
-    } else if (operationval != '') {
+    } else if (operationval != null) {
       setOperationval((prevIn) => {
-        return (prevIn.slice(0, (prevIn.length - 1)))
+        if ((prevIn.slice(0, (prevIn.length - 1)))) {
+          return (prevIn.slice(0, (prevIn.length - 1)))
+        } else {
+          return null;
+        }
       })
     } else if (firstInput !== null) {
       setFirstInput((prevIn) => {
-        return (prevIn.slice(0, (prevIn.length - 1)))
+        if ((prevIn.slice(0, (prevIn.length - 1)))) {
+          return (prevIn.slice(0, (prevIn.length - 1)))
+        } else {
+          return null;
+        }
       })
     }
 
