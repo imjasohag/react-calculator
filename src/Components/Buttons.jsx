@@ -37,6 +37,9 @@ const Buttons = (props) => {
   }
   // operation 
   const operationFun = (e) => {
+    if (firstInput == null) {
+      setFirstInput(0)
+    }
     const value = e.target.value;
     setOperationval(value)
   }
@@ -59,44 +62,43 @@ const Buttons = (props) => {
   // operational functions
   const addition = (a, b) => {
     let result = parseFloat(a) + parseFloat(b)
-    // console.log("🚀 ~ file: Buttons.jsx:52 ~ addition ~ result:", result)
     setResultValue(result)
 
   }
   const subtraction = (a, b) => {
     let result = parseFloat(a) - parseFloat(b)
-    // console.log("🚀 ~ file: Buttons.jsx:55 ~ subtraction ~ result:", result)
+
     setResultValue(result)
   }
   const multiplication = (a, b) => {
     let result = parseFloat(a) * parseFloat(b)
-    // console.log("🚀 ~ file: Buttons.jsx:60 ~ multiplication ~ result:", result)
+
     setResultValue(result)
   }
   const division = (a, b) => {
     let result = parseFloat(a) / parseFloat(b)
-    // console.log("🚀 ~ file: Buttons.jsx:65 ~ division ~ result:", result)
+
     setResultValue(result)
   }
 
 
   return (
     <>
-      <input onClick={reset} className='button col-span-2' type="button" value="AC" />
+      <input onClick={reset} className='button col-span-2 ' type="button" value="AC" />
       <input onClick={deleteFun} className='button' type="button" value="DEL" />
-      <input onClick={operationFun} className='button-green' type="button" value="+" />
+      <input onClick={operationFun} className='button-green text-2xl font-semibold' type="button" value="+" />
       <input onClick={numInputValue} className='button' type="button" value='1' />
       <input onClick={numInputValue} className='button' type="button" value="2" />
       <input onClick={numInputValue} className='button' type="button" value="3" />
-      <input onClick={operationFun} className='button-green' type="button" value="-" />
+      <input onClick={operationFun} className='button-green text-2xl font-semibold' type="button" value="-" />
       <input onClick={numInputValue} className='button' type="button" value="4" />
       <input onClick={numInputValue} className='button' type="button" value="5" />
       <input onClick={numInputValue} className='button' type="button" value="6" />
-      <input onClick={operationFun} className='button-green' type="button" value="÷" />
+      <input onClick={operationFun} className='button-green text-2xl font-semibold' type="button" value="÷" />
       <input onClick={numInputValue} className='button' type="button" value="7" />
       <input onClick={numInputValue} className='button' type="button" value="8" />
       <input onClick={numInputValue} className='button' type="button" value="9" />
-      <input onClick={operationFun} className='button-green' type="button" value="x" />
+      <input onClick={operationFun} className='button-green font-semibold' type="button" value="x" />
       <input onClick={numInputValue} className='button' type="button" value="." />
       <input onClick={numInputValue} className='button' type="button" value="0" />
       <input onClick={outputFun} className='button-red col-span-2' type="button" value="=" />
