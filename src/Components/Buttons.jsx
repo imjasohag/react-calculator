@@ -1,20 +1,21 @@
 import React, { useState } from 'react'
-// import Button from './Button'
+import { AppState } from '../App';
+import Button from './Button'
 
 const Buttons = (props) => {
-  const { firstInput, setFirstInput, secondInput, setSecondInput, operationval, setOperationval, reset, deleteFun, resultValue, setResultValue } = props
+  const { state, setState, firstInput, setFirstInput, secondInput, setSecondInput, operationval, setOperationval, reset, deleteFun, resultValue, setResultValue } = props
 
-  // numbr input fun
   const numInputValue = (e) => {
     const value = e.target.value;
 
-    if (resultValue !== null && firstInput && operationval && secondInput) {
+    if (state == AppState.done) {
+      setState(AppState.init)
       // when all the state are filled, and type new number clearing all state
       setFirstInput(value)
       setOperationval(null)
       setSecondInput(null)
       setResultValue(null)
-      return // (stop here)
+      return
     }
     if (operationval == null && secondInput == null) {
       setFirstInput((prevIn) => {
@@ -35,7 +36,7 @@ const Buttons = (props) => {
       })
     }
   }
-  // operation 
+  // operation function 
   const operationFun = (e) => {
     if (firstInput == null) {
       setFirstInput(0)
@@ -43,20 +44,25 @@ const Buttons = (props) => {
     const value = e.target.value;
     setOperationval(value)
   }
-  // output 
+  // output function 
   const outputFun = () => {
-    switch (operationval) {
-      case '+':
-        addition(firstInput, secondInput)
-        break;
-      case '-':
-        subtraction(firstInput, secondInput)
-        break;
-      case 'x':
-        multiplication(firstInput, secondInput)
-        break;
-      case '÷':
-        division(firstInput, secondInput)
+    if (secondInput == null) {
+      return
+    } else {
+      setState(AppState.done)
+      switch (operationval) {
+        case '+':
+          addition(firstInput, secondInput)
+          break;
+        case '-':
+          subtraction(firstInput, secondInput)
+          break;
+        case 'x':
+          multiplication(firstInput, secondInput)
+          break;
+        case '÷':
+          division(firstInput, secondInput)
+      }
     }
   }
   // operational functions

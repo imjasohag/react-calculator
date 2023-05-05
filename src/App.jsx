@@ -1,7 +1,13 @@
 import React, { useState } from 'react'
 import Buttons from './Components/Buttons'
 
+export const AppState = {
+  init: "init",
+  done: "done"
+}
+
 const App = () => {
+  const [state, setState] = useState(AppState.init)
   const [firstInput, setFirstInput] = useState(null)
   const [secondInput, setSecondInput] = useState(null)
   const [operationval, setOperationval] = useState(null)
@@ -11,6 +17,7 @@ const App = () => {
 
   // reset function
   const reset = () => {
+    setState(AppState.init)
     setFirstInput(null)
     setSecondInput(null)
     setOperationval(null)
@@ -19,7 +26,7 @@ const App = () => {
 
   // delete function 
   const deleteFun = () => {
-
+    setState(AppState.init)
     if ((firstInput && firstInput.length == 1) && operationval == null && secondInput == null && resultValue !== null) {
       setFirstInput(null)
       setResultValue(null)
@@ -69,8 +76,11 @@ const App = () => {
           <div className='text-right text-2xl'>
             {resultValue == null ? "0" : resultValue}
           </div>
+                 
         </div>
-        <Buttons resultValue={resultValue} reset={reset} deleteFun={deleteFun}
+        <Buttons
+          state={state} setState={setState}
+          resultValue={resultValue} reset={reset} deleteFun={deleteFun}
           firstInput={firstInput} secondInput={secondInput} operationval={operationval} setFirstInput={setFirstInput} setSecondInput={setSecondInput} setOperationval={setOperationval} setResultValue={setResultValue} />
       </div>
     </div>
