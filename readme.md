@@ -3,6 +3,6 @@
 ![screenshort](./Screenshot_1.png)
 
 ### used:
-- designed by tailwind
-- React state
+- designed by tailwind css
+- upto React useState
 
