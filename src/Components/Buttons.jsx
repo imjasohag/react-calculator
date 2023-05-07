@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import { AppState } from '../App';
-import Button from './Button'
 
 const Buttons = (props) => {
   const { state, setState, firstInput, setFirstInput, secondInput, setSecondInput, operationval, setOperationval, reset, deleteFun, resultValue, setResultValue } = props
